@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class FloatField extends Field{
 
-	public FloatField(SchemaImpl parent, String name) {
+	public FloatField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 	

@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class DoubleField extends Field {
 
-	public DoubleField(SchemaImpl parent, String name) {
+	public DoubleField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 

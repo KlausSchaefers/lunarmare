@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class LongField extends Field{
 
-	public LongField(SchemaImpl parent, String name) {
+	public LongField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 	

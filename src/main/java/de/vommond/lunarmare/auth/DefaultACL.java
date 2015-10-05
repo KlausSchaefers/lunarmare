@@ -1,40 +1,35 @@
-package de.vommond.lunarmare.acl;
+package de.vommond.lunarmare.auth;
 
+import de.vommond.lunarmare.auth.ACL;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.User;
-import de.vommond.lunarmare.ACL;
 
-public class RoleACL implements ACL{
+public class DefaultACL implements ACL {
 
 	@Override
 	public void canCreate(User user, JsonObject data, Handler<Boolean> handler) {
-		// TODO Auto-generated method stub
-		
+		handler.handle(true);
 	}
 
 	@Override
 	public void canRead(User user, String id, Handler<Boolean> handler) {
-		// TODO Auto-generated method stub
-		
+		handler.handle(true);
 	}
-
+	
 	@Override
 	public void canFind(User user, JsonObject data, Handler<Boolean> handler) {
-		// TODO Auto-generated method stub
-		
+		handler.handle(true);
 	}
 
 	@Override
 	public void canUpdate(User user, JsonObject data, Handler<Boolean> handler) {
-		// TODO Auto-generated method stub
-		
+		handler.handle(true);
 	}
 
 	@Override
 	public void canDelete(User user, String id, Handler<Boolean> handler) {
-		// TODO Auto-generated method stub
-		
+		handler.handle(true);
 	}
 
 }

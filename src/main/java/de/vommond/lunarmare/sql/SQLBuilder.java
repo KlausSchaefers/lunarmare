@@ -1,16 +1,18 @@
 package de.vommond.lunarmare.sql;
 
+import io.vertx.core.json.JsonObject;
+
 import java.util.List;
 
-import de.vommond.lunarmare.Schema;
-import de.vommond.lunarmare.fields.Field;
-import de.vommond.lunarmare.fields.Field.Type;
+import de.vommond.lunarmare.Model;
+import de.vommond.lunarmare.impl.Field;
+import de.vommond.lunarmare.impl.Field.Type;
 
 public class SQLBuilder {
 	
-	private final Schema schema;
+	private final Model schema;
 	
-	public SQLBuilder(Schema schema){
+	public SQLBuilder(Model schema){
 		this.schema = schema;
 		
 	}
@@ -138,6 +140,26 @@ public class SQLBuilder {
 	
 	public String delete(){
 		return "";
+	}
+
+	public String insert(JsonObject klaus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String update(JsonObject klaus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String replace(JsonObject klaus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String delete(JsonObject klaus) {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 	
 

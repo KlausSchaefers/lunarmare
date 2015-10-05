@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class ArrayField extends Field{
 
-	public ArrayField(SchemaImpl parent, String name) {
+	public ArrayField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 

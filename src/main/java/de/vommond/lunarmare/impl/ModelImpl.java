@@ -2,36 +2,31 @@ package de.vommond.lunarmare.impl;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.RoutingContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.vommond.lunarmare.Schema;
-import de.vommond.lunarmare.SchemaBuilder;
-import de.vommond.lunarmare.fields.ArrayField;
-import de.vommond.lunarmare.fields.BooleanField;
-import de.vommond.lunarmare.fields.DateField;
-import de.vommond.lunarmare.fields.DoubleField;
-import de.vommond.lunarmare.fields.Field;
-import de.vommond.lunarmare.fields.FloatField;
-import de.vommond.lunarmare.fields.IDField;
-import de.vommond.lunarmare.fields.IntArrayField;
-import de.vommond.lunarmare.fields.IntegerField;
-import de.vommond.lunarmare.fields.LongField;
-import de.vommond.lunarmare.fields.ObjectField;
-import de.vommond.lunarmare.fields.StringField;
+import de.vommond.lunarmare.Model;
+import de.vommond.lunarmare.ModelBuilder;
 
 
-public class SchemaImpl implements Schema, SchemaBuilder {
+public class ModelImpl implements Model, ModelBuilder {
 
 	private final List<Field> fields = new ArrayList<Field>();
 	
 	private final String name;
 	
 	
-	public SchemaImpl(String name) {
+	public ModelImpl(String name) {
 		this.name = name;
-		this.fields.add(new IDField(this, "_id").setOptional());
+		/**
+		 * We always add here some meta data.
+		 */
+		this.fields.add(new IDField(this, ID).setOptional());
+		this.fields.add(new LongField(this, CREATED).setOptional());
+		this.fields.add(new LongField(this, UPDATE).setOptional());
+		this.fields.add(new LongField(this, VERSION).setOptional());
 	}
 	
 	public List<Field> getFields(){
@@ -174,13 +169,14 @@ public class SchemaImpl implements Schema, SchemaBuilder {
 	}
 
 	@Override
-	public Schema build() {
+	public Model build() {
 		return this;
 	}
 
+
+	
 	@Override
 	public JsonObject write(JsonObject object) {
-		
 		JsonObject result = new JsonObject();
 
 		foreach(field -> {
@@ -197,11 +193,36 @@ public class SchemaImpl implements Schema, SchemaBuilder {
 		
 		return result;
 	}
+	
+	@Override
+	public void write(JsonObject object, RoutingContext event) {
+		JsonObject result = write(object);
+		event.response().end(result.encode());
+	}
 
 	@Override
 	public JsonObject read(JsonObject object) {
-		return write(object);
+		JsonObject result = new JsonObject();
+
+		foreach(field -> {
+			String key = field.getName();
+			/**
+			 * if the field is not hidden and it exists in the other 
+			 * object, we will copy it.
+			 */
+		
+			if(object.containsKey(key)){
+				result.put(key, field.read(object.getValue(key)));	
+			}
+		});
+		
+		return result;
 	}
 
+	@Override
+	public JsonObject read(RoutingContext event) {
+		JsonObject object = event.getBodyAsJson();
+		return read(object);
+	}
 
 }

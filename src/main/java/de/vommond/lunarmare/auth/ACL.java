@@ -1,4 +1,4 @@
-package de.vommond.lunarmare;
+package de.vommond.lunarmare.auth;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;

@@ -10,11 +10,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.vommond.lunarmare.DataService;
-import de.vommond.lunarmare.DataServiceResult;
+import de.vommond.lunarmare.ModelService;
+import de.vommond.lunarmare.ModelServiceResult;
 import de.vommond.lunarmare.sql.SQLDataService;
 
-public class MongoDataService implements DataService{
+public class MongoDataService implements ModelService{
 	
 	private Logger logger = LoggerFactory.getLogger(SQLDataService.class);
 	
@@ -28,34 +28,34 @@ public class MongoDataService implements DataService{
 	}
 
 	@Override
-	public void create(User user, JsonObject object,Handler<DataServiceResult<String>> handler) {
+	public void create(JsonObject object,Handler<ModelServiceResult<String>> handler) {
 
 		
 	}
 
 	@Override
-	public void update(User user, JsonObject object,Handler<DataServiceResult<String>> handler) {
+	public void replace(JsonObject object,Handler<ModelServiceResult<String>> handler) {
 		
 	}
 
 	@Override
-	public void updatePartial(User user, JsonObject object,	Handler<DataServiceResult<String>> handler) {
+	public void update(JsonObject object,	Handler<ModelServiceResult<String>> handler) {
 		
 	}
 
 	@Override
-	public void get(User user, String id,	Handler<DataServiceResult<JsonObject>> handler) {
+	public void get(String id,	Handler<ModelServiceResult<JsonObject>> handler) {
 		
 	}
 
 	@Override
-	public void find(User user, JsonObject object,	Handler<DataServiceResult<List<JsonObject>>> handler) {
+	public void find(JsonObject object,	Handler<ModelServiceResult<List<JsonObject>>> handler) {
 
 		
 	}
 
 	@Override
-	public void delete(User user, String id,Handler<DataServiceResult<Boolean>> handler) {
+	public void delete(String id,Handler<ModelServiceResult<Boolean>> handler) {
 		
 		
 	}

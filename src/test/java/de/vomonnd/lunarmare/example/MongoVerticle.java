@@ -1,6 +1,7 @@
 package de.vomonnd.lunarmare.example;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
@@ -13,6 +14,13 @@ import io.vertx.ext.web.sstore.LocalSessionStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.vommond.lunarmare.Model;
+import de.vommond.lunarmare.ModelFactory;
+import de.vommond.lunarmare.auth.DefaultACL;
+import de.vommond.lunarmare.mongo.MongoDataService;
+import de.vommond.lunarmare.rest.CRUDRest;
+
+
 public class MongoVerticle extends AbstractVerticle{
 	
 	private MongoClient client;
@@ -20,6 +28,8 @@ public class MongoVerticle extends AbstractVerticle{
 	private Logger logger = LoggerFactory.getLogger(MongoVerticle.class);
 
 	private HttpServer server;
+	
+	private final ModelFactory factory = new ModelFactory();
 	
 	@Override
 	public void start() {
@@ -34,7 +44,6 @@ public class MongoVerticle extends AbstractVerticle{
 		 * Create MongoDB client
 		 */
 		client = MongoClient.createShared(vertx, mongoConfig);
-		
 
 		/**
 		 * Set body and cookie handler
@@ -44,6 +53,28 @@ public class MongoVerticle extends AbstractVerticle{
 		router.route().handler(CookieHandler.create());
 		router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)).setNagHttps(false));
 	
+		
+		/**
+		 * Now setup the domain models
+		 */
+		Model user = factory.create("user")
+				.addString("email")
+				.addString("password").setHidden()
+				.addString("name")
+				.addString("lastname").build();
+			
+		
+		MongoDataService ds = new MongoDataService(client, "users");
+
+		CRUDRest userRest = new CRUDRest(ds, user, new DefaultACL());
+		userRest.bind(router, "/rest/user", true);
+		
+		
+//		UserRest authRest = new UserRest();
+//	
+//		router.route(HttpMethod.POST, "/rest/user/create").handler(authRest.createUser());
+//		router.route(HttpMethod.POST, "/rest/user/create").handler(authRest.createUser());
+		
 		
 		
 		
@@ -58,6 +89,10 @@ public class MongoVerticle extends AbstractVerticle{
 		logger.info("*************************");
 		logger.info("* MongoVerticle Started *");
 		logger.info("*************************");
+	}
+	
+	public void getDomainModel(){
+		
 	}
 	
 

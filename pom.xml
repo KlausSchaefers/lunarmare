@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.vommond</groupId>
-  <artifactId>lunarmare</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.vommond</groupId>
+	<artifactId>lunarmare</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
 		<vertx.version>3.0.0-milestone6</vertx.version>
 		<log4j2.version>2.3</log4j2.version>
 	</properties>
- 
+
 
 	<dependencies>
 
@@ -23,13 +24,13 @@
 			<artifactId>vertx-unit</artifactId>
 			<version>${vertx.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-auth-common</artifactId>
 			<version>${vertx.version}</version>
 		</dependency>
-				
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -42,7 +43,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
@@ -79,29 +80,36 @@
 			<artifactId>guava</artifactId>
 			<version>18.0</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.google.javascript</groupId>
+			<artifactId>closure-compiler</artifactId>
+			<version>r2388</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.12</version>
 		</dependency>
-	
-		
+
+
 
 		<dependency>
-		   <groupId>org.apache.logging.log4j</groupId>
-		   <artifactId>log4j-api</artifactId>
-		   <version>${log4j2.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.apache.logging.log4j</groupId>
-		   <artifactId>log4j-core</artifactId>
-		   <version>${log4j2.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.apache.logging.log4j</groupId>
-		   <artifactId>log4j-slf4j-impl</artifactId>
-		   <version>${log4j2.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
 		</dependency>
 
 
@@ -175,5 +183,5 @@
 		</plugins>
 
 	</build>
-  
+
 </project>

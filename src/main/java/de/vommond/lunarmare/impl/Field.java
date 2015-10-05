@@ -1,11 +1,10 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
 import io.vertx.core.json.JsonObject;
-import de.vommond.lunarmare.Schema;
-import de.vommond.lunarmare.SchemaBuilder;
-import de.vommond.lunarmare.impl.SchemaImpl;
+import de.vommond.lunarmare.Model;
+import de.vommond.lunarmare.ModelBuilder;
 
-public class Field implements SchemaBuilder{
+public class Field implements ModelBuilder{
 	
 	public static enum Type {
 		
@@ -14,7 +13,7 @@ public class Field implements SchemaBuilder{
 	}
 	
 	
-	private final SchemaImpl parent;
+	private final ModelImpl parent;
 	
 	protected final String name;
 	
@@ -34,7 +33,7 @@ public class Field implements SchemaBuilder{
 	
 	public static final String ERROR_MAX = "error.max";
 	
-	public Field(SchemaImpl parent, String name){
+	public Field(ModelImpl parent, String name){
 		this.parent = parent;
 		this.name = name;
 	}
@@ -53,6 +52,15 @@ public class Field implements SchemaBuilder{
 		return hidden;
 	}
 	
+
+	/**
+	 * When the model.read() method is called this method is invoked 
+	 * as well to provide some kind of transformation.
+	 */
+	public Object read(Object value){
+		return value;
+	}
+
 	
 	public String validate(JsonObject object){
 		if(this.isRequired){
@@ -119,9 +127,10 @@ public class Field implements SchemaBuilder{
 	}
 
 	@Override
-	public Schema build() {
+	public Model build() {
 		return parent;
 	}
-
+	
+	
 
 }

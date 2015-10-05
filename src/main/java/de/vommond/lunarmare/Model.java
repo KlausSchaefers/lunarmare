@@ -2,13 +2,23 @@ package de.vommond.lunarmare;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.RoutingContext;
 
 import java.util.List;
 
-import de.vommond.lunarmare.fields.Field;
+import de.vommond.lunarmare.impl.Field;
 
-public interface Schema {
+public interface Model {
+	
+	public static final String ID = "_id";
+	
+	public static final String VERSION = "_version";
+	
+	public static final String CREATED = "_created";
 
+	public static final String UPDATE = "_update";
+	
+	
 	public abstract String getName();
 
 	/**
@@ -57,6 +67,8 @@ public interface Schema {
 	 */
 	public JsonObject write(JsonObject object);
 	
+	public void write(JsonObject object, RoutingContext event);
+	
 	
 	/**
 	 * Removes all non defined fields form the json object. The method filter everything out that is not defined!
@@ -68,5 +80,17 @@ public interface Schema {
 	 * 			The filtered object
 	 */
 	public JsonObject read(JsonObject object);
+	
+	
+	/**
+	 * Removes all non defined fields form the json object. The method filter everything out that is not defined!
+	 * 
+	 * @param object
+	 * 			The object to filter!
+	 * 
+	 * @return
+	 * 			The filtered object
+	 */
+	public JsonObject read(RoutingContext event);
 	
 }

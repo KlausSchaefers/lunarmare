@@ -1,11 +1,10 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 
 public class ObjectField extends Field {
 
-	public ObjectField(SchemaImpl parent, String name) {
+	public ObjectField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 	

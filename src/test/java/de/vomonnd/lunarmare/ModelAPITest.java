@@ -6,24 +6,25 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import io.vertx.core.json.JsonObject;
-import de.vommond.lunarmare.Schema;
-import de.vommond.lunarmare.SchemaFactory;
-import de.vommond.lunarmare.fields.Field;
+import de.vommond.lunarmare.Model;
+import de.vommond.lunarmare.ModelFactory;
+import de.vommond.lunarmare.impl.Field;
 
-public class SchemaAPITest {
+public class ModelAPITest {
 	
-	private SchemaFactory schemas = new SchemaFactory();
+	private ModelFactory schemas = new ModelFactory();
 	
 	
 	@Test
 	public void testReadWrite(){
 		
-		Schema schema = schemas.create("user")
+		Model schema = schemas.create("user")
 			.addString("name")
 			.addString("lastname")
 			.addInteger("age")
 			.addString("role").setHidden()
 			.addString("password").setHidden()
+			.addString("hash").setTransform( x->x+"!")
 			.build();
 		
 		JsonObject user = new JsonObject()
@@ -31,7 +32,8 @@ public class SchemaAPITest {
 			.put("lastname", "Schaefers")
 			.put("age",35)
 			.put("role", "admin")
-			.put("password", "123123");
+			.put("password", "123123")
+			.put("hash", "123");
 		
 		
 		JsonObject written = schema.write(user);
@@ -40,6 +42,7 @@ public class SchemaAPITest {
 		Assert.assertTrue(written.containsKey("name"));
 		Assert.assertTrue(written.containsKey("lastname"));
 		Assert.assertTrue(written.containsKey("age"));
+		Assert.assertTrue(written.containsKey("hash"));
 		Assert.assertFalse(written.containsKey("password"));
 		Assert.assertFalse(written.containsKey("role"));
 	
@@ -47,11 +50,13 @@ public class SchemaAPITest {
 		
 		JsonObject read = schema.read(user);
 		
-		Assert.assertTrue(written.containsKey("name"));
-		Assert.assertTrue(written.containsKey("lastname"));
-		Assert.assertTrue(written.containsKey("age"));
-		Assert.assertFalse(read.containsKey("password"));
-		Assert.assertFalse(read.containsKey("role"));
+		Assert.assertTrue(read.containsKey("name"));
+		Assert.assertTrue(read.containsKey("lastname"));
+		Assert.assertTrue(read.containsKey("age"));
+		Assert.assertTrue(read.containsKey("password"));
+		Assert.assertTrue(read.containsKey("role"));
+		Assert.assertTrue(read.containsKey("hash"));
+		Assert.assertEquals(read.getString("hash"), "123!");
 	}
 	
 	@Test

@@ -1,19 +1,19 @@
 package de.vommond.lunarmare;
 
-import de.vommond.lunarmare.fields.ArrayField;
-import de.vommond.lunarmare.fields.BooleanField;
-import de.vommond.lunarmare.fields.DateField;
-import de.vommond.lunarmare.fields.DoubleField;
-import de.vommond.lunarmare.fields.FloatField;
-import de.vommond.lunarmare.fields.IntArrayField;
-import de.vommond.lunarmare.fields.IntegerField;
-import de.vommond.lunarmare.fields.LongField;
-import de.vommond.lunarmare.fields.ObjectField;
-import de.vommond.lunarmare.fields.StringField;
+import de.vommond.lunarmare.impl.ArrayField;
+import de.vommond.lunarmare.impl.BooleanField;
+import de.vommond.lunarmare.impl.DateField;
+import de.vommond.lunarmare.impl.DoubleField;
+import de.vommond.lunarmare.impl.FloatField;
+import de.vommond.lunarmare.impl.IntArrayField;
+import de.vommond.lunarmare.impl.IntegerField;
+import de.vommond.lunarmare.impl.LongField;
+import de.vommond.lunarmare.impl.ObjectField;
+import de.vommond.lunarmare.impl.StringField;
 
-public interface SchemaBuilder {
+public interface ModelBuilder {
 
-	public Schema build();
+	public Model build();
 	
 	public abstract IntegerField addInteger(String name);
 

@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class IDField extends Field{
 
-	public IDField(SchemaImpl parent, String name) {
+	public IDField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 	

@@ -1,4 +1,4 @@
-package de.vomonnd.lunarmare;
+package de.vomonnd.lunarmare.mongo;
 
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.vomonnd.lunarmare.BaseTestCase;
 import de.vomonnd.lunarmare.example.MongoVerticle;
 
 @RunWith(VertxUnitRunner.class)

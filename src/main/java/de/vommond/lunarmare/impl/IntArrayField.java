@@ -1,10 +1,9 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 public class IntArrayField extends Field{
 
-	public IntArrayField(SchemaImpl parent, String name) {
+	public IntArrayField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 

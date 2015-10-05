@@ -1,12 +1,11 @@
-package de.vommond.lunarmare.fields;
+package de.vommond.lunarmare.impl;
 
-import de.vommond.lunarmare.impl.SchemaImpl;
 
 
 
 public class IntegerField extends Field {
 
-	public IntegerField(SchemaImpl parent, String name) {
+	public IntegerField(ModelImpl parent, String name) {
 		super(parent, name);
 	}
 	
