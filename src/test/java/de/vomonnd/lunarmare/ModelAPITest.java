@@ -65,6 +65,7 @@ public class ModelAPITest {
 		schemas.create("user")
 			.addString("name")
 			.addString("lastname")
+			.addString("password").setMinLenth(6).setMaxLenth(10)
 			.addInteger("age");
 		
 		schemas.create("user2")
@@ -74,15 +75,25 @@ public class ModelAPITest {
 		
 		
 		JsonObject user = new JsonObject();
-		assertErrors("user", user, "user.name."+ Field.ERROR_REQUIRED, "user.lastname."+ Field.ERROR_REQUIRED, "user.age."+ Field.ERROR_REQUIRED);
+		assertErrors("user", user, "user.name."+ Field.ERROR_REQUIRED, "user.lastname."+ Field.ERROR_REQUIRED, "user.age."+ Field.ERROR_REQUIRED, "user.password."+ Field.ERROR_REQUIRED);
 		
 		user = new JsonObject().put("name", "Klaus");
-		assertErrors("user", user, "user.lastname."+ Field.ERROR_REQUIRED, "user.age."+ Field.ERROR_REQUIRED);
+		assertErrors("user", user, "user.lastname."+ Field.ERROR_REQUIRED, "user.age."+ Field.ERROR_REQUIRED, "user.password."+ Field.ERROR_REQUIRED);
 		
 		user = new JsonObject().put("name", "Klaus").put("lastname", "Schaefers");
-		assertErrors("user", user, "user.age."+ Field.ERROR_REQUIRED);
+		assertErrors("user", user, "user.age."+ Field.ERROR_REQUIRED, "user.password."+ Field.ERROR_REQUIRED);
 		
 		user = new JsonObject().put("name", "Klaus").put("lastname", "Schaefers").put("age",35);
+		assertErrors("user", user, "user.password."+ Field.ERROR_REQUIRED);
+		
+		
+		user = new JsonObject().put("name", "Klaus").put("lastname", "Schaefers").put("age",35).put("password", "12345");
+		assertErrors("user", user, "user.password."+ Field.ERROR_MIN);
+		
+		user = new JsonObject().put("name", "Klaus").put("lastname", "Schaefers").put("age",35).put("password", "123457891011");
+		assertErrors("user", user, "user.password."+ Field.ERROR_MAX);
+		
+		user = new JsonObject().put("name", "Klaus").put("lastname", "Schaefers").put("age",35).put("password", "123456");
 		assertErrors("user", user);
 		
 		/**

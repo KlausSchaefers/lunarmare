@@ -29,6 +29,16 @@ public interface Model {
 	 * @return
 	 * 		List of errors
 	 */
+	public abstract boolean isValid(JsonObject object);
+	
+	/**
+	 * Validates all fields
+	 * 
+	 * @param object
+	 * 		The object to check
+	 * @return
+	 * 		List of errors
+	 */
 	public abstract List<String> validate(JsonObject object);
 
 	/**

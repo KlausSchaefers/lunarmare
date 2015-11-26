@@ -75,12 +75,11 @@ public class StringField extends Field{
 		
 		if(value != null){
 			
-			if(this.minLength >=0 && this.minLength <= value.length()){
+			if(this.minLength >=0 && value.length()< this.minLength){
 				return ERROR_MIN;
 			}
 			
-
-			if(this.maxLength >=0 && this.maxLength > value.length()){
+			if(this.maxLength >=0 && value.length() > this.maxLength){	
 				return ERROR_MAX;
 			}
 			

@@ -44,6 +44,10 @@ public class ModelImpl implements Model, ModelBuilder {
 		}
 	}
 	
+	public boolean isValid(JsonObject object){
+		return validate(object, false).isEmpty();
+	}
+	
 	
 	@Override
 	public List<String> validate(JsonObject object){
