@@ -1,15 +1,6 @@
 package de.vomonnd.lunarmare;
 
 import static java.nio.file.Files.readAllBytes;
-import io.vertx.core.AsyncResult;
-import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Handler;
-import io.vertx.core.Verticle;
-import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
-import io.vertx.ext.mongo.MongoClient;
-import io.vertx.ext.unit.TestContext;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +25,16 @@ import org.junit.Before;
 
 import com.google.common.io.CharStreams;
 
+import io.vertx.core.AsyncResult;
+import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Handler;
+import io.vertx.core.Verticle;
+import io.vertx.core.Vertx;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.mongo.MongoClient;
+import io.vertx.ext.unit.TestContext;
+
 
 public class BaseTestCase {
 
@@ -51,8 +52,7 @@ public class BaseTestCase {
     
     private int loglevel = 3;
     
-    private String vertileID;
-	
+   
 	@Before
 	public void before(TestContext contex) {
 		try {
@@ -151,7 +151,7 @@ public class BaseTestCase {
 				
 				if(event.succeeded()){
 					log("deploy","exit > "  + event.result());
-					vertileID = event.result();
+					
 				} else {
 					//context.fail("Could not deploy verticle");
 					event.cause().printStackTrace();
